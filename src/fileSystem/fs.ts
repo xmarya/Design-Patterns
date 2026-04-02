@@ -1,18 +1,28 @@
 import fs from "fs";
 import path from "path";
 
-const FILE_PATH = ({ dirname, filename }: { dirname: string; filename: string }) => path.join(dirname, filename);
+type File = { dirname: string; filename: string };
+const FILE_PATH = ({ dirname, filename }: File) => path.join(dirname, filename);
 
-function writeFile({ dirname, filename, content }: { dirname: string; filename: string; content: string }) {
-
-  fs.writeFileSync(FILE_PATH({dirname, filename}), content, "utf8")
+function isFileExist(file: File) {
+  return fs.existsSync(FILE_PATH(file));
 }
 
-function readFile({ dirname, filename }: { dirname: string; filename: string }) {
-  const filePath = { dirname, filename };
-  if (!fs.existsSync(FILE_PATH(filePath))) return "Error:not-found";
+function writeFile({ file, content }: { file: File; content: string }) {
+  // this should deal with its cases of exist and non-existent files
+  if (!isFileExist(file)) {
+    fs.writeFileSync(FILE_PATH(file), content, "utf8");
+    return;
+  }
 
-  return "hello";
+  fs.appendFileSync(FILE_PATH(file), " ".concat(content), "utf8");
 }
 
-export { writeFile, readFile };
+function readFile(file: File) {
+  // this should deal with its cases of exist and non-existent files
+  if (!isFileExist(file)) return "Error:not-found";
+  const content = fs.readFileSync(FILE_PATH(file), { encoding: "utf8" });
+  return content;
+}
+
+export { isFileExist, writeFile, readFile };
