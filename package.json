@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest ./src/DP-1"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,6 @@
   "devDependencies": {
     "@types/node": "^25.5.0",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2",
     "vitest": "^4.1.2"
   }
 }
