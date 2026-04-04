@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-type File = { dirname: string; filename: string };
+export type File = { dirname: string; filename: string };
 const FILE_PATH = ({ dirname, filename }: File) => path.join(dirname, filename);
 
 function isFileExist(file: File) {
