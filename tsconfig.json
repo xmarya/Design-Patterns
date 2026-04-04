@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "types": ["node", "vitest/globals"],
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
 
     // Other Outputs
     "sourceMap": true,
