@@ -18,7 +18,7 @@ describe("file system functions", () => {
   });
 
   it("should append new content without overwriting the file", () => {
-    const content = "world";
+    const content = " ".concat("world");
     const file = { dirname: __dirname, filename: "data.local.txt" };
     writeFile({ file, content });
     expect(readFile(file)).toEqual("hello world");

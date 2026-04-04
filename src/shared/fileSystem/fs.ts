@@ -8,14 +8,14 @@ function isFileExist(file: File) {
   return fs.existsSync(FILE_PATH(file));
 }
 
-function writeFile({ file, content }: { file: File; content: string }) {
+function writeFile({ file, content }: { file: File; content: any }) {
   // this should deal with its cases of exist and non-existent files
   if (!isFileExist(file)) {
     fs.writeFileSync(FILE_PATH(file), content, "utf8");
     return;
   }
 
-  fs.appendFileSync(FILE_PATH(file), " ".concat(content), "utf8");
+  fs.appendFileSync(FILE_PATH(file), content, "utf8");
 }
 
 function readFile(file: File) {
