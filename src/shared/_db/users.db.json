@@ -3,18 +3,18 @@
         "id": "001",
         "name": "James",
         "email":"james@email.com",
-        "phoneNumber": "0123456789"
+        "phoneNumber": 9012345678
     },
     "002":{
         "id": "002",
         "name": "David",
         "email":"david@email.com",
-        "phoneNumber": "9876543210"
+        "phoneNumber": 9876543210
     },
     "003":{
         "id": "003",
         "name": "Emily",
         "email":"emily@email.com",
-        "phoneNumber": "1098765432"
+        "phoneNumber": 1098765432
     }
 }
