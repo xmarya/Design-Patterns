@@ -9,20 +9,13 @@ function isFileExist(file: File) {
 }
 
 function writeFile({ file, content }: { file: File; content: any }) {
-  // this should deal with its cases of exist and non-existent files
-  if (!isFileExist(file)) {
-    fs.writeFileSync(FILE_PATH(file), content, "utf8");
-    return;
-  }
-
-  fs.appendFileSync(FILE_PATH(file), content, "utf8");
+  fs.writeFileSync(FILE_PATH(file), content, "utf8");
 }
 
-function readFile(file: File) {
-  // this should deal with its cases of exist and non-existent files
-  if (!isFileExist(file)) return "Error:not-found";
-  const content = fs.readFileSync(FILE_PATH(file), { encoding: "utf8" });
-  return content;
+function readFile<T>(file: File):{ok:false, message:string} |  {ok:true, content:T}{
+  if (!isFileExist(file)) return {ok:false, message:"Error:not-found"};
+  const content = fs.readFileSync(FILE_PATH(file), { encoding: "utf8" }) as T;
+  return {ok:true, content};
 }
 
 export { isFileExist, writeFile, readFile };
