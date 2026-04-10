@@ -19,5 +19,12 @@
       "content": "This email is to inform you about a login attempt to your account.",
       "date": "2026-04-07T11:42:47.308Z"
     }
+  },
+  {
+    "james@email.com": {
+      "subject": "Login attempt",
+      "content": "This email is to inform you about a login attempt to your account.",
+      "date": "2026-04-10T07:08:10.942Z"
+    }
   }
 ]

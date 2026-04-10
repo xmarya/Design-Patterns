@@ -1,5 +1,6 @@
-import { isFileExist, readFile, writeFile, type File } from "../../shared/fileSystem/fs";
+import { readFile, writeFile, type File } from "../../shared/fileSystem/fs";
 import type { NotificationDTO, NotificationsStrategy } from "../_types/NotificationsStrategy.js";
+import getNotificationContent from "../utils/getNotificationContent";
 export class EmailService implements NotificationsStrategy {
   notify(notification: NotificationDTO): void {
     const file: File = { dirname: __dirname, filename: "email-notifications.json" };
@@ -14,33 +15,11 @@ export class EmailService implements NotificationsStrategy {
 
   private formatEmailNotification(notification: NotificationDTO) {
     const { type, to, date } = notification;
-    const content = type === "new-login" ? this.getLoginContent() : type === "reset-password" ? this.getResetContent() : this.getSignupContent();
     return {
       [to.email]: {
-        ...content,
+        ...getNotificationContent(type),
         date,
       },
-    };
-  }
-
-  private getSignupContent() {
-    return {
-      subject: "Welcome! 🎉",
-      content: "We are happy to have you. complete your profile to start with us.",
-    };
-  }
-  private getLoginContent() {
-    return {
-      subject: "Login attempt",
-      content: "This email is to inform you about a login attempt to your account.",
-    };
-  }
-
-  private getResetContent() {
-    return {
-      subject: "Your account password has been reset",
-      content: `This email is to inform you about a password reset attempt to your account. 
-      If you don't know about this process please contact us immediately`,
     };
   }
 }

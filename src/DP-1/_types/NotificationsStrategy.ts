@@ -11,12 +11,6 @@ export interface NotificationsStrategy {
   notify(notification: NotificationDTO): void;
 }
 
-export class InAppNotification implements NotificationsStrategy {
-  // user id
-  notify(notification: NotificationDTO): void {
-    // write to in-app.json
-  }
-}
 
 export class SMSNotification implements NotificationsStrategy {
   // phone number
