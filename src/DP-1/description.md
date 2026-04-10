@@ -7,10 +7,8 @@ Practice 1 — The Notification Dispatcher
 
 # Features:
     - I want to separate each channel notifications in a file.
-    - The notifications count of each service (channel) should be increase.
-    - The notifications count should be cleared/marked as read.
-    - In-App notification needs on the user id.
-    - Email notification needs on the user email address.
-    - SMS notification needs on the user phone number.
+    - In-App notification needs the user id.
+    - Email notification needs the user email address.
+    - SMS notification needs the user phone number.
 
 # Future Enhancements: The solution could be a combination between the Strategy and the Factory, in which we can notify the user only via their preferred channels.
