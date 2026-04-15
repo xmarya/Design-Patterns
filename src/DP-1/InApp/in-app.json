@@ -1,0 +1,20 @@
+[
+  {
+    "002": {
+      "notiId": "867483",
+      "subject": "Your account password has been reset",
+      "content": "This email is to inform you about a password reset attempt to your account. \n      If you don't know about this process please contact us immediately",
+      "unread": true,
+      "date": "2026-04-15T05:49:20.221Z"
+    }
+  },
+  {
+    "002": {
+      "notiId": "1706007",
+      "subject": "Your account password has been reset",
+      "content": "This email is to inform you about a password reset attempt to your account. \n      If you don't know about this process please contact us immediately",
+      "unread": true,
+      "date": "2026-04-15T05:53:24.620Z"
+    }
+  }
+]
