@@ -42,7 +42,7 @@ export class InAppNotification implements NotificationsStrategy {
       }
     });
     writeFile({ file: this.file, content: JSON.stringify(notifications, null, 2) });
-    console.log(notifications);
+
     return notifications;
   }
   getUserNotifications(userId: string) {

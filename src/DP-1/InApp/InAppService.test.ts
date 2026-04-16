@@ -1,7 +1,6 @@
-import { InAppNotification } from "./InAppService";
 import users from "../../shared/_db/users.db.json";
 import type { NotificationDTO } from "../_types/NotificationsStrategy";
-import { writeFile } from "../../shared/fileSystem/fs";
+import { InAppNotification } from "./InAppService";
 
 describe("In App notifications service", () => {
   beforeAll(() => {
@@ -53,5 +52,4 @@ describe("In App notifications service", () => {
       expect(updatedNoti).toMatchObject({ [userId]: { unread: false } });
     }
   });
-
 });
