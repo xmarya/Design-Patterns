@@ -5,17 +5,16 @@ import getNotificationContent from "../utils/getNotificationContent";
 import readJsonFile from "../../shared/utils/readJsonFile";
 
 export class InAppNotification implements NotificationsStrategy {
-  private file:File;
+  private file: File;
   constructor() {
     this.file = { dirname: __dirname, filename: "in-app.json" };
   }
   notify(notification: NotificationDTO): void {
-
     const existingContent = readJsonFile<InAppDTO>(this.file);
     const newNotification = this.formatNotification(notification);
 
     existingContent.push(newNotification);
-    writeFile({ file:this.file, content: JSON.stringify(existingContent, null, 2) });
+    writeFile({ file: this.file, content: JSON.stringify(existingContent, null, 2) });
   }
 
   private formatNotification(newNotification: NotificationDTO): InAppDTO {
@@ -35,15 +34,22 @@ export class InAppNotification implements NotificationsStrategy {
     };
   }
   markAsRead({ userId, notificationId }: { userId: string; notificationId: string }) {
-    // read the file
-    // search for the noti id
-    // set unread:false
+    const notifications = readJsonFile<InAppDTO>(this.file);
+
+    notifications.forEach((noti, index) => {
+      if (noti[userId]?.notiId === notificationId) {
+        notifications[index] = { ...noti, [userId]: { ...noti[userId], unread: false } };
+      }
+    });
+    writeFile({ file: this.file, content: JSON.stringify(notifications, null, 2) });
+    console.log(notifications);
+    return notifications;
   }
   getUserNotifications(userId: string) {
     const exitingContent = readJsonFile<InAppDTO>(this.file);
 
     const notifications = exitingContent.filter((noti) => noti[userId]);
-        
+
     return notifications;
   }
 }

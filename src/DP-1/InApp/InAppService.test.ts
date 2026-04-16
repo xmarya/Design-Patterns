@@ -1,8 +1,7 @@
 import { InAppNotification } from "./InAppService";
 import users from "../../shared/_db/users.db.json";
 import type { NotificationDTO } from "../_types/NotificationsStrategy";
-import type { InAppDTO } from "../_types/InAppDTO";
-import readJsonFile from "../../shared/utils/readJsonFile";
+import { writeFile } from "../../shared/fileSystem/fs";
 
 describe("In App notifications service", () => {
   beforeAll(() => {
@@ -40,5 +39,19 @@ describe("In App notifications service", () => {
     expect(newNoti?.subject).toContain(/reset/i);
   });
 
- 
+  it("should mark the selected notification as read", () => {
+    const inAppService = new InAppNotification();
+    const userId = users["002"].id;
+    const result = inAppService.getUserNotifications(userId);
+
+    const unreadNoti = result.filter((noti) => noti[userId]?.unread);
+    const unreadNotiId = unreadNoti[0]?.[userId]?.notiId;
+    if (unreadNotiId) {
+      const notifications = inAppService.markAsRead({ userId, notificationId: unreadNotiId });
+      const updatedNoti = notifications.filter((noti) => noti[userId]?.notiId === unreadNotiId)[0];
+
+      expect(updatedNoti).toMatchObject({ [userId]: { unread: false } });
+    }
+  });
+
 });
