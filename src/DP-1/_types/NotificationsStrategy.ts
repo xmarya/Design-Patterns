@@ -11,10 +11,3 @@ export interface NotificationsStrategy {
   notify(notification: NotificationDTO): void;
 }
 
-
-export class SMSNotification implements NotificationsStrategy {
-  // phone number
-  notify(notification: NotificationDTO): void {
-    // write to sms.json
-  }
-}
