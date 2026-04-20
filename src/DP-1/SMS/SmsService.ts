@@ -2,7 +2,7 @@ import type { NotificationDTO, NotificationsStrategy } from "../_types/Notificat
 import { writeFile, type File } from "../../shared/fileSystem/fs";
 import getNotificationContent from "../utils/getNotificationContent";
 import readJsonFile from "../../shared/utils/readJsonFile";
-export class SMSNotification implements NotificationsStrategy {
+export class SmsService implements NotificationsStrategy {
   private file: File = { dirname: __dirname, filename: "sms.json" };
   notify(notification: NotificationDTO): void {
     // write to sms.json

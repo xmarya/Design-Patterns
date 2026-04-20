@@ -1,5 +1,5 @@
 import type { NotificationDTO } from "../_types/NotificationsStrategy";
-import { SMSNotification } from "./SmsService";
+import { SmsService } from "./SmsService";
 import users from "../../shared/_db/users.db.json";
 import readJsonFile from "../../shared/utils/readJsonFile";
 import { writeFile } from "../../shared/fileSystem/fs";
@@ -14,7 +14,7 @@ describe("SMS Service", () => {
     writeFile({ file: { dirname: __dirname, filename: "sms.json" }, content: JSON.stringify("") });
   });
   it("exists", () => {
-    const smsService = new SMSNotification();
+    const smsService = new SmsService();
     expect(smsService.notify).toBeDefined();
   });
 
@@ -27,7 +27,7 @@ describe("SMS Service", () => {
       type: "signup",
       date: now,
     };
-    const smsService = new SMSNotification();
+    const smsService = new SmsService();
 
     smsService.notify(notification);
     const userPhone = users["003"].phoneNumber;
