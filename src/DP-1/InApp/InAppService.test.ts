@@ -1,4 +1,5 @@
 import users from "../../shared/_db/users.db.json";
+import { writeFile } from "../../shared/fileSystem/fs";
 import type { NotificationDTO } from "../_types/NotificationsStrategy";
 import { InAppNotification } from "./InAppService";
 
@@ -9,6 +10,7 @@ describe("In App notifications service", () => {
 
   afterAll(() => {
     vi.useRealTimers();
+    writeFile({ file: { dirname: __dirname, filename: "in-app.json" }, content: JSON.stringify("") });
   });
 
   it("exist", () => {

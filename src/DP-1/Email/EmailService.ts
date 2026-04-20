@@ -3,17 +3,17 @@ import type { NotificationDTO, NotificationsStrategy } from "../_types/Notificat
 import getNotificationContent from "../utils/getNotificationContent";
 export class EmailService implements NotificationsStrategy {
   notify(notification: NotificationDTO): void {
-    const file: File = { dirname: __dirname, filename: "email-notifications.json" };
+    const file: File = { dirname: __dirname, filename: "email.json" };
     const result = readFile(file);
 
     const existingContent = result.ok === true && (result.content as string).length ? JSON.parse(result.content as string) : [];
-    const formattedContent = this.formatEmailNotification(notification);
+    const formattedContent = this.formatNotification(notification);
     existingContent.push(formattedContent);
 
     writeFile({ file, content: JSON.stringify(existingContent, null, 2) });
   }
 
-  private formatEmailNotification(notification: NotificationDTO) {
+  private formatNotification(notification: NotificationDTO) {
     const { type, to, date } = notification;
     return {
       [to.email]: {

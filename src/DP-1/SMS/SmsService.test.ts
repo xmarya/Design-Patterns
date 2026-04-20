@@ -11,7 +11,7 @@ describe("SMS Service", () => {
 
   afterAll(() => {
     vi.useRealTimers();
-    // writeFile({ file: { dirname: __dirname, filename: "sms.json" }, content: JSON.stringify("") });
+    writeFile({ file: { dirname: __dirname, filename: "sms.json" }, content: JSON.stringify("") });
   });
   it("exists", () => {
     const smsService = new SMSNotification();

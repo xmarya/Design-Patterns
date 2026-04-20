@@ -1,16 +1,17 @@
 import { EmailService } from "./EmailService.js";
 import users from "../../shared/_db/users.db.json";
 import type { NotificationDTO } from "../_types/NotificationsStrategy.js";
-import { readFile, type File } from "../../shared/fileSystem/fs.js";
+import { readFile, writeFile, type File } from "../../shared/fileSystem/fs.js";
 import { expect } from "vitest";
 
 describe("Email Service", () => {
-  beforeEach(() => {
+  beforeAll(() => {
     vi.useFakeTimers();
   });
 
-  afterEach(() => {
+  afterAll(() => {
     vi.useRealTimers();
+    writeFile({ file: { dirname: __dirname, filename: "email.json" }, content: JSON.stringify("") });
   });
 
   it("should exist", () => {
