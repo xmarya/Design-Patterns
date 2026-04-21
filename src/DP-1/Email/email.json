@@ -1,1 +1,9 @@
-""
+[
+  {
+    "emily@email.com": {
+      "subject": "Login attempt",
+      "content": "This email is to inform you about a login attempt to your account.",
+      "date": "2026-04-21T05:43:32.199Z"
+    }
+  }
+]

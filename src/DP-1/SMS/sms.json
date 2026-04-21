@@ -1,1 +1,9 @@
-""
+[
+  {
+    "1098765432": {
+      "subject": "Your account password has been reset",
+      "content": "This email is to inform you about a password reset attempt to your account. \n      If you don't know about this process please contact us immediately",
+      "date": "2026-04-21T05:43:32.200Z"
+    }
+  }
+]
