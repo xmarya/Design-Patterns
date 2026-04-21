@@ -3,11 +3,14 @@ import type { InAppDTO } from "../_types/InAppDTO";
 import type { NotificationDTO, NotificationsStrategy } from "../_types/NotificationsStrategy";
 import getNotificationContent from "../utils/getNotificationContent";
 import readJsonFile from "../../shared/utils/readJsonFile";
+import { fileURLToPath } from "url";
+import path from "path";
 
 export class InAppNotification implements NotificationsStrategy {
   private file: File;
   constructor() {
-    this.file = { dirname: __dirname, filename: "in-app.json" };
+    const __filename = fileURLToPath(import.meta.url);
+    this.file = { dirname: path.dirname(__filename), filename: "in-app.json" };
   }
   notify(notification: NotificationDTO): void {
     const existingContent = readJsonFile<InAppDTO>(this.file);

@@ -2,8 +2,15 @@ import type { NotificationDTO, NotificationsStrategy } from "../_types/Notificat
 import { writeFile, type File } from "../../shared/fileSystem/fs";
 import getNotificationContent from "../utils/getNotificationContent";
 import readJsonFile from "../../shared/utils/readJsonFile";
+import { fileURLToPath } from "url";
+import path from "path";
 export class SmsService implements NotificationsStrategy {
-  private file: File = { dirname: __dirname, filename: "sms.json" };
+  private file: File;
+
+  constructor() {
+    const __filename = fileURLToPath(import.meta.url);
+    this.file = { dirname: path.dirname(__filename), filename: "sms.json" };
+  }
   notify(notification: NotificationDTO): void {
     // write to sms.json
     const content = readJsonFile(this.file);

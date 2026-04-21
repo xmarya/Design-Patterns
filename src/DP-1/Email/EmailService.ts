@@ -1,16 +1,23 @@
+import path from "path";
 import { readFile, writeFile, type File } from "../../shared/fileSystem/fs";
 import type { NotificationDTO, NotificationsStrategy } from "../_types/NotificationsStrategy.js";
 import getNotificationContent from "../utils/getNotificationContent";
+import { fileURLToPath } from "url";
 export class EmailService implements NotificationsStrategy {
+  private file: File;
+  constructor() {
+    const __filename = fileURLToPath(import.meta.url);
+    this.file = { dirname: path.dirname(__filename), filename: "email.json" };
+
+  }
   notify(notification: NotificationDTO): void {
-    const file: File = { dirname: __dirname, filename: "email.json" };
-    const result = readFile(file);
+    const result = readFile(this.file);
 
     const existingContent = result.ok === true && (result.content as string).length ? JSON.parse(result.content as string) : [];
     const formattedContent = this.formatNotification(notification);
     existingContent.push(formattedContent);
 
-    writeFile({ file, content: JSON.stringify(existingContent, null, 2) });
+    writeFile({ file:this.file, content: JSON.stringify(existingContent, null, 2) });
   }
 
   private formatNotification(notification: NotificationDTO) {
