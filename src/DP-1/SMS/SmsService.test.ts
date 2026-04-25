@@ -1,8 +1,8 @@
 import type { NotificationDTO } from "../_types/NotificationsStrategy";
 import { SmsService } from "./SmsService";
-import users from "../../shared/_db/users.db.json";
-import readJsonFile from "../../shared/utils/readJsonFile";
-import { writeFile } from "../../shared/fileSystem/fs";
+import users from "../../shared/infra/_db/users.db.json";
+import readJsonFile from "../../shared/utils/fileSystem/readJsonFile";
+import { writeFile } from "../../shared/utils/fileSystem/fs";
 
 describe("SMS Service", () => {
   beforeAll(() => {

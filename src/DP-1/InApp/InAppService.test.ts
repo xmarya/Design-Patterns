@@ -1,5 +1,5 @@
-import users from "../../shared/_db/users.db.json";
-import { writeFile } from "../../shared/fileSystem/fs";
+import users from "../../shared/infra/_db/users.db.json";
+import { writeFile } from "../../shared/utils/fileSystem/fs";
 import type { NotificationDTO } from "../_types/NotificationsStrategy";
 import { InAppNotification } from "./InAppService";
 

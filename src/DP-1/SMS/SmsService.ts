@@ -1,7 +1,7 @@
 import type { NotificationDTO, NotificationsStrategy } from "../_types/NotificationsStrategy";
-import { writeFile, type File } from "../../shared/fileSystem/fs";
+import { writeFile, type File } from "../../shared/utils/fileSystem/fs";
 import getNotificationContent from "../utils/getNotificationContent";
-import readJsonFile from "../../shared/utils/readJsonFile";
+import readJsonFile from "../../shared/utils/fileSystem/readJsonFile";
 import { fileURLToPath } from "url";
 import path from "path";
 export class SmsService implements NotificationsStrategy {

@@ -1,8 +1,8 @@
-import { writeFile, type File } from "../../shared/fileSystem/fs";
-import type { InAppDTO } from "../_types/InAppDTO";
+import { writeFile, type File } from "../../shared/utils/fileSystem/fs";
+import type { InAppDTO } from "./InAppDTO";
 import type { NotificationDTO, NotificationsStrategy } from "../_types/NotificationsStrategy";
 import getNotificationContent from "../utils/getNotificationContent";
-import readJsonFile from "../../shared/utils/readJsonFile";
+import readJsonFile from "../../shared/utils/fileSystem/readJsonFile";
 import { fileURLToPath } from "url";
 import path from "path";
 

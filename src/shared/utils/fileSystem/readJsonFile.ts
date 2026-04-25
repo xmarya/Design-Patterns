@@ -1,4 +1,4 @@
-import { readFile, type File } from "../fileSystem/fs";
+import { readFile, type File } from "./fs";
 
 function readJsonFile<T>(file: File): Array<T> {
   const result = readFile<string>(file);

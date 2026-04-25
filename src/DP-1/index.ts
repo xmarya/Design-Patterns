@@ -1,5 +1,5 @@
 import type { NotificationDTO, NotificationsStrategy } from "./_types/NotificationsStrategy";
-import users from "../shared/_db/users.db.json";
+import users from "../shared/infra/_db/users.db.json";
 import { EmailService } from "./Email/EmailService";
 import { SmsService } from "./SMS/SmsService";
 import { InAppNotification } from "./InApp/InAppService";
