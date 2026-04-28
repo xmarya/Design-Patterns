@@ -1,11 +1,11 @@
 export class Success<S> {
   readonly success: true;
-  readonly result: S;
+  readonly data: S;
   readonly statusCode: number;
 
-  constructor(statusCode: number, value: S) {
+  constructor({statusCode, data}:{statusCode: number, data: S}) {
     this.success = true;
     this.statusCode = statusCode;
-    this.result = value;
+    this.data = data;
   }
 }
