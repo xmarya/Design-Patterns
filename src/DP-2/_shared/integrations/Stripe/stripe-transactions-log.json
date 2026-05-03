@@ -1,0 +1,10 @@
+[
+  {
+    "id": "trans_00258",
+    "amount": 300,
+    "currency": "SAR",
+    "cardNumber": 1312111098765432,
+    "paymentMethod": "card",
+    "created": 1777786113091
+  }
+]
