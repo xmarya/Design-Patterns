@@ -7,4 +7,4 @@ Practice 2 — The API Response Normalizer
 # My Solution: the keywords: different response shapes and unifying layer led me to know that the right Design Pattern in this situation is the Adaptor. it's the one which translates different languages -third party APIs- into my languages -what I'm building-.
 
 # Features:
-    - I want the unified response shape to be {success:true, statusCode:number, result:any } | {success:false, statusCode:number, error:string}
+    - I want the unified response shape to be {success:true, statusCode:number, data:any } | {success:false, statusCode:number, error:string}
