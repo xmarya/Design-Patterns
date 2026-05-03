@@ -1,12 +1,12 @@
-export type StripPaymentMethods = "card" | "paypal" | "samsung_pay"
+export type StripPaymentMethods = "card" | "paypal" | "samsung_pay";
 
 export type StripePaymentSuccess = {
   code: number;
   id: string;
   type: StripPaymentMethods;
-  mode:"payment"
-  currency:string,
-  amount_total:number
+  mode: "payment";
+  currency: string;
+  amount_total: number;
   created: number; // ms
 };
 
@@ -20,6 +20,7 @@ export type StripeTransactionData = {
   id: string;
   created: number; // ms
   currency: string;
+  cardNumber: number;
   type: StripPaymentMethods;
   amount: number;
 };

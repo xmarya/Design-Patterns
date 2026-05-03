@@ -7,8 +7,9 @@ export type PaymentData = {
   userPhone: number;
   userEmail: string;
   amount: number;
+  currency:string,
   paymentMethod: StripPaymentMethods;
   created: Date;
 };
 
-export type TransactionData = Pick<PaymentData, "id" | "amount" | "paymentMethod" | "cardNumber" | "created">;
+export type TransactionData = Pick<PaymentData, "id" | "amount" | "paymentMethod" | "cardNumber" | "currency" | "created">;
