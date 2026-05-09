@@ -12,17 +12,18 @@ export class Dashboard {
     const dirname = path.join(__dirname, "../_shared/infra/db");
     this.file = { dirname, filename: "dataset.json" };
   }
+  getDashboardData() {
+    return readJsonFile<DashboardDataset>(this.file);
+  }
   getByDate({ dateStarts, dateEnds }: { dateStarts: string; dateEnds: string }) {
-    const dataset = readJsonFile<DashboardDataset>(this.file);
     const dateStartsTime = new Date(dateStarts).getTime();
     const dateEndsTime = new Date(dateEnds).getTime();
-    const result = dataset.filter(({ date }) => new Date(date).getTime() >= dateStartsTime && new Date(date).getTime() <= dateEndsTime);
+    const result = this.getDashboardData().filter(({ date }) => new Date(date).getTime() >= dateStartsTime && new Date(date).getTime() <= dateEndsTime);
 
     return result;
   }
 
   getByStatus(status: DashboardDataset["status"]) {
-    const dataset = readJsonFile<DashboardDataset>(this.file);
-    return dataset.filter((ds) => ds.status === status);
+    return this.getDashboardData().filter((ds) => ds.status === status);
   }
 }
