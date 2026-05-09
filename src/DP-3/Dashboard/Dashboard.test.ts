@@ -24,4 +24,19 @@ describe("Dashboard dataset filtering", () => {
 
     expect(result.length).toEqual(3);
   });
+
+  it("should return an array with 2 items when filtering by 'active' status", () => {
+    const result = dashboard.getByStatus("active");
+    expect(result.length).toBe(2);
+  });
+
+  it("should return an array with 1 item when filtering by 'postponed' status'", () => {
+    const result = dashboard.getByStatus("postponed");
+    expect(result.length).toBe(1);
+  });
+
+  it("should return an array with 2 items when filtering by 'in-progress' status'", () => {
+    const result = dashboard.getByStatus("in-progress");
+    expect(result.length).toBe(2);
+  });
 });

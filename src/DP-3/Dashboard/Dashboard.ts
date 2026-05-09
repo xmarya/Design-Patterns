@@ -20,4 +20,9 @@ export class Dashboard {
 
     return result;
   }
+
+  getByStatus(status: DashboardDataset["status"]) {
+    const dataset = readJsonFile<DashboardDataset>(this.file);
+    return dataset.filter((ds) => ds.status === status);
+  }
 }
