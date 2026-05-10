@@ -26,4 +26,11 @@ export class Dashboard {
   getByStatus(status: DashboardDataset["status"]) {
     return this.getDashboardData().filter((ds) => ds.status === status);
   }
+
+  getByCategory(categories: DashboardDataset["categories"]) {
+    const joinedCats = categories.join().toLocaleLowerCase();
+    const result = this.getDashboardData().filter(({categories:cats}) => cats.some(cat => joinedCats.includes(cat.toLowerCase())));
+
+    return result;
+  }
 }

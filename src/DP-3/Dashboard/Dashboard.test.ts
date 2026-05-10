@@ -39,4 +39,24 @@ describe("Dashboard dataset filtering", () => {
     const result = dashboard.getByStatus("in-progress");
     expect(result.length).toBe(2);
   });
+
+  it("should return an empty array when filtering by 'Engineering' category", () => {
+    const result = dashboard.getByCategory(["Engineering"]);
+    expect(result.length).toBeFalsy();
+  });
+
+  it("should return an array with 1 item when filtering by 'Finance' category", () => {
+    const result = dashboard.getByCategory(["Finance"]);
+    expect(result.length).toBe(1);
+  });
+
+  it("should get the data of category 'HR' when the letters case is different", () => {
+    expect(dashboard.getByCategory(["hr"]).length).toBe(2);
+    expect(dashboard.getByCategory(["hR"]).length).toBe(2);
+    expect(dashboard.getByCategory(["Hr"]).length).toBe(2);
+  });
+
+  it("should return an array with 2 item when filtering the category by 'Sales' and 'Management'", () => {
+    expect(dashboard.getByCategory(["Sales", "Management"]).length).toBe(2);
+  })
 });
