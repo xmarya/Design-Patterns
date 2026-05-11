@@ -58,5 +58,17 @@ describe("Dashboard dataset filtering", () => {
 
   it("should return an array with 2 item when filtering the category by 'Sales' and 'Management'", () => {
     expect(dashboard.getByCategory(["Sales", "Management"]).length).toBe(2);
-  })
+  });
+
+  it("should return an array with 1 item when filtering by 'May' keyword", () => {
+    expect(dashboard.getByKeyword(["May"]).length).toBe(1);
+  });
+
+  it("should return an array with 1 item when filtering by lowercased 'january' keyword", () => {
+    expect(dashboard.getByKeyword(["january"]).length).toBe(1);
+  });
+
+  it("should return an array with 3 items when filtering by ['february', 'mars', 'april'] keywords", () => {
+    expect(dashboard.getByKeyword(['february', 'mars', 'april']).length).toBe(3);
+  });
 });

@@ -29,8 +29,14 @@ export class Dashboard {
 
   getByCategory(categories: DashboardDataset["categories"]) {
     const joinedCats = categories.join().toLocaleLowerCase();
-    const result = this.getDashboardData().filter(({categories:cats}) => cats.some(cat => joinedCats.includes(cat.toLowerCase())));
+    const result = this.getDashboardData().filter(({ categories: cats }) => cats.some((cat) => joinedCats.includes(cat.toLowerCase())));
 
     return result;
+  }
+
+  getByKeyword(keywords: DashboardDataset["keywords"]) {
+    const joinedKeywords = keywords.join().toLocaleLowerCase();
+    const dataset = this.getDashboardData();
+    return dataset.filter((ds) => ds.keywords.some((kw) => joinedKeywords.includes(kw.toLocaleLowerCase())));
   }
 }
