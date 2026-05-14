@@ -15,28 +15,4 @@ export class Dashboard {
   getDashboardData() {
     return readJsonFile<DashboardDataset>(this.file);
   }
-  getByDate({ dateStarts, dateEnds }: { dateStarts: string; dateEnds: string }) {
-    const dateStartsTime = new Date(dateStarts).getTime();
-    const dateEndsTime = new Date(dateEnds).getTime();
-    const result = this.getDashboardData().filter(({ date }) => new Date(date).getTime() >= dateStartsTime && new Date(date).getTime() <= dateEndsTime);
-
-    return result;
-  }
-
-  getByStatus(status: DashboardDataset["status"]) {
-    return this.getDashboardData().filter((ds) => ds.status === status);
-  }
-
-  getByCategory(categories: DashboardDataset["categories"]) {
-    const joinedCats = categories.join().toLocaleLowerCase();
-    const result = this.getDashboardData().filter(({ categories: cats }) => cats.some((cat) => joinedCats.includes(cat.toLowerCase())));
-
-    return result;
-  }
-
-  getByKeyword(keywords: DashboardDataset["keywords"]) {
-    const joinedKeywords = keywords.join().toLocaleLowerCase();
-    const dataset = this.getDashboardData();
-    return dataset.filter((ds) => ds.keywords.some((kw) => joinedKeywords.includes(kw.toLocaleLowerCase())));
-  }
 }
