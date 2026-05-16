@@ -98,4 +98,41 @@ describe("Dashboard dataset filtering using QueryComponents", () => {
     const result = kwsFilter.query(data);
     expect(result.length).toBe(3);
   });
+
+  it("should be possible to add multiple filters to use them at once", () => {
+    const dateFilter = new DateFilter<DashboardDataset>("date", { dateStarts: "2026-01-01", dateEnds: "2026-31-12" });
+    const catsFilter = new CategoryFilter<DashboardDataset>("categories", "IT");
+
+    const filtersGroup = new FiltersGroup();
+    expect(filtersGroup.addFilter(dateFilter)).toBe(1);
+    expect(filtersGroup.addFilter(catsFilter)).toBe(2);
+  });
+
+  it("should be possible to remove any filter from the filters group", () => {
+    const dateFilter = new DateFilter<DashboardDataset>("date", { dateStarts: "2026-01-01", dateEnds: "2026-31-12" });
+    const catsFilter = new CategoryFilter<DashboardDataset>("categories", "IT");
+    const statusFilter = new StatusFilter<DashboardDataset>("status", "active");
+    const filtersGroup = new FiltersGroup();
+
+    filtersGroup.addFilter(dateFilter);
+    filtersGroup.addFilter(catsFilter);
+    filtersGroup.addFilter(statusFilter);
+
+    expect(filtersGroup.removeFilter(dateFilter)).toBe(2);
+  });
+
+  it("should return an array with 2 items when filtering by date from 2026-01-01 to 2026-05-30 and active status", () => {
+    const dateFilter = new DateFilter<DashboardDataset>("date", { dateStarts: "2026-01-01", dateEnds: "2026-05-30" });
+    const statusFilter = new StatusFilter<DashboardDataset>("status", "active");
+    const catsFilter = new CategoryFilter<DashboardDataset>("categories", "IT");
+    const filtersGroup = new FiltersGroup();
+
+    filtersGroup.addFilter(dateFilter);
+    filtersGroup.addFilter(statusFilter);
+    
+    expect(filtersGroup.query(data).length).toBe(2);
+
+    filtersGroup.addFilter(catsFilter);
+    expect(filtersGroup.query(data).length).toBe(0);
+  });
 });
