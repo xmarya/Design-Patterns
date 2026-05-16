@@ -1,3 +1,3 @@
 export interface QueryComponent {
-  query<T>(data:Array<T>, key:keyof T): Array<T>;
+  query<T>(data:Array<T>): Array<T>;
 }

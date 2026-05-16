@@ -1,9 +1,9 @@
 import type { QueryComponent } from "./QueryComponent";
 
-export class StatusFilter implements QueryComponent {
-  constructor(private status: string) {}
+export class StatusFilter<T> implements QueryComponent {
+  constructor(private readonly key: keyof T, private status: string) {}
 
-  query<T>(data: Array<T>, key: keyof T): Array<T> {
-      return data.filter(({[key]: status}) => status === this.status);
+  query<T>(data: Array<T>): Array<T> {
+      return data.filter(({[this.key]: status}) => status === this.status);
   }
 }
